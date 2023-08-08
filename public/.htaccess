@@ -13,6 +13,10 @@ RewriteRule ^index(.html)?$ /checkpoints [R=302,NC,L]
 RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
 RewriteRule ^ /%1 [R=302,L]
 
-# Rewrite pages
+# Rewrite top-level pages
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^([^./]+)/?$ $1.html [L]
+
+# Rewrite nested pages
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([^.]+)/?$ $1.html [L]
